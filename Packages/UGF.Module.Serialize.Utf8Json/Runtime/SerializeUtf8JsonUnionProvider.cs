@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using UGF.Utf8Json.Runtime;
 using UGF.Utf8Json.Runtime.Formatters.Union;
 using Utf8Json;
@@ -9,17 +8,14 @@ namespace UGF.Module.Serialize.Utf8Json.Runtime
 {
     public class SerializeUtf8JsonUnionProvider : ISerializeUtf8JsonUnionProvider
     {
-        public IReadOnlyDictionary<Type, Type> TargetTypes { get; }
         public IUtf8JsonFormatterResolver Resolver { get; }
         public IUnionSerializer UnionSerializer { get; }
 
-        IReadOnlyCollection<Type> ISerializeUtf8JsonUnionProvider.TargetTypes { get { return m_targetTypeToUnionType.Keys; } }
-
+        private readonly Dictionary<Type, HashSet<Type>> m_unionTypes = new Dictionary<Type, HashSet<Type>>();
         private readonly Dictionary<Type, Type> m_targetTypeToUnionType = new Dictionary<Type, Type>();
 
         public SerializeUtf8JsonUnionProvider(IUtf8JsonFormatterResolver resolver, IUnionSerializer unionSerializer)
         {
-            TargetTypes = new ReadOnlyDictionary<Type, Type>(m_targetTypeToUnionType);
             Resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
             UnionSerializer = unionSerializer ?? throw new ArgumentNullException(nameof(unionSerializer));
         }
@@ -55,7 +51,8 @@ namespace UGF.Module.Serialize.Utf8Json.Runtime
             }
 
             unionFormatter.AddFormatter<TTargetType>(typeIdentifier);
-            m_targetTypeToUnionType.Add(targetType, unionType);
+
+            Add(unionType, targetType);
         }
 
         public void Add(Type unionType, Type targetType, string typeIdentifier, IJsonFormatter formatter)
@@ -72,7 +69,8 @@ namespace UGF.Module.Serialize.Utf8Json.Runtime
             }
 
             unionFormatter.AddFormatter(targetType, typeIdentifier, formatter);
-            m_targetTypeToUnionType.Add(targetType, unionType);
+
+            Add(unionType, targetType);
         }
 
         public void Add(Type unionType, Type targetType)
@@ -81,6 +79,14 @@ namespace UGF.Module.Serialize.Utf8Json.Runtime
             if (targetType == null) throw new ArgumentNullException(nameof(targetType));
             if (m_targetTypeToUnionType.ContainsKey(targetType)) throw new ArgumentException($"The specified target type already exists: '{targetType}'.", nameof(targetType));
 
+            if (!m_unionTypes.TryGetValue(unionType, out HashSet<Type> targetTypes))
+            {
+                targetTypes = new HashSet<Type>();
+
+                m_unionTypes.Add(unionType, targetTypes);
+            }
+
+            targetTypes.Add(targetType);
             m_targetTypeToUnionType.Add(targetType, unionType);
         }
 
@@ -89,17 +95,68 @@ namespace UGF.Module.Serialize.Utf8Json.Runtime
             if (unionType == null) throw new ArgumentNullException(nameof(unionType));
             if (targetType == null) throw new ArgumentNullException(nameof(targetType));
 
-            if (m_targetTypeToUnionType.Remove(targetType) && Resolver.TryGetFormatter(unionType, out IJsonFormatter value) && value is IUnionFormatter unionFormatter)
+            if (m_unionTypes.TryGetValue(unionType, out HashSet<Type> targetTypes))
             {
-                unionFormatter.RemoveFormatter(targetType);
+                if (targetTypes.Remove(targetType) && targetTypes.Count == 0)
+                {
+                    m_unionTypes.Remove(unionType);
+                }
             }
+
+            if (m_targetTypeToUnionType.Remove(targetType))
+            {
+                RemoveFormatter(unionType, targetType);
+            }
+        }
+
+        public void Remove(Type unionType)
+        {
+            if (unionType == null) throw new ArgumentNullException(nameof(unionType));
+
+            if (m_unionTypes.TryGetValue(unionType, out HashSet<Type> targetTypes))
+            {
+                foreach (Type targetType in targetTypes)
+                {
+                    if (m_targetTypeToUnionType.Remove(targetType))
+                    {
+                        RemoveFormatter(unionType, targetType);
+                    }
+                }
+
+                m_unionTypes.Remove(unionType);
+            }
+        }
+
+        public void Clear()
+        {
+            foreach (KeyValuePair<Type, HashSet<Type>> pair in m_unionTypes)
+            {
+                Type unionType = pair.Key;
+                HashSet<Type> targetTypes = pair.Value;
+
+                foreach (Type targetType in targetTypes)
+                {
+                    if (m_targetTypeToUnionType.ContainsKey(targetType))
+                    {
+                        RemoveFormatter(unionType, targetType);
+                    }
+                }
+            }
+
+            m_unionTypes.Clear();
+            m_targetTypeToUnionType.Clear();
         }
 
         public Type GetUnionType(Type targetType)
         {
             if (targetType == null) throw new ArgumentNullException(nameof(targetType));
 
-            return m_targetTypeToUnionType[targetType];
+            if (!m_targetTypeToUnionType.TryGetValue(targetType, out Type unionType))
+            {
+                throw new ArgumentException($"The union type not found for the specified target type: '{targetType}'.");
+            }
+
+            return unionType;
         }
 
         public bool TryGetUnionType(Type targetType, out Type unionType)
@@ -112,6 +169,19 @@ namespace UGF.Module.Serialize.Utf8Json.Runtime
         public Dictionary<Type, Type>.Enumerator GetEnumerator()
         {
             return m_targetTypeToUnionType.GetEnumerator();
+        }
+
+        private void RemoveFormatter(Type unionType, Type targetType)
+        {
+            if (Resolver.TryGetFormatter(unionType, out IJsonFormatter value) && value is IUnionFormatter unionFormatter)
+            {
+                unionFormatter.RemoveFormatter(targetType);
+
+                if (unionFormatter.FormattersCount == 0)
+                {
+                    Resolver.RemoveFormatter(unionType);
+                }
+            }
         }
     }
 }
