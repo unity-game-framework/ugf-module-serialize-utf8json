@@ -1,7 +1,7 @@
 {
     "name": "com.ugf.module.serialize.utf8json",
     "displayName": "UGF.Module.Serialize.Utf8Json",
-    "version": "0.1.0-preview",
+    "version": "0.2.0-preview",
     "unity": "2019.3",
     "description": "No description.",
     "author": {
@@ -10,7 +10,7 @@
     },
     "dependencies": {
         "com.ugf.module.serialize": "0.1.0-preview",
-        "com.ugf.utf8json": "2.1.0-preview",
+        "com.ugf.utf8json": "2.2.0-preview",
         "com.ugf.logs": "1.1.0",
         "com.unity.mathematics": "1.1.0"
     }
