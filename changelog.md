@@ -26,6 +26,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 - Nothing.
 
+## 0.2.0-preview - 2019-10-17
+- [Commits](https://github.com/unity-game-framework/ugf-module-serialize-utf8json/compare/0.1.0-preview...0.2.0-preview)
+- [Milestone](https://github.com/unity-game-framework/ugf-module-serialize-utf8json/milestone/2?closed=1)
+
+### Added
+- `ISerializeUtf8JsonUnionProvider`: add `Remove` all types and `Clear` methods.
+- `SerializeUtf8JsonUnionProviderExtensions`: with additional `Add`, `Remove` and `GetUnionType` methods.
+
+### Changed
+- Package dependencies:
+    - `com.ugf.utf8json`: from `2.1.0-preview` to `2.2.0-preview`.
+
 ## 0.1.0-preview - 2019-10-09
 - [Commits](https://github.com/unity-game-framework/ugf-module-serialize-utf8json/compare/e4f3f22...0.1.0-preview)
 - [Milestone](https://github.com/unity-game-framework/ugf-module-serialize-utf8json/milestone/1?closed=1)
