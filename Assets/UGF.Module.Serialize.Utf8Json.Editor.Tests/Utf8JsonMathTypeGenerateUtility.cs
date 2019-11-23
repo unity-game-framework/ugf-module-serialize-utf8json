@@ -21,7 +21,7 @@ namespace UGF.Module.Serialize.Utf8Json.Editor.Tests
             {
                 Utf8JsonMathTypeGenerateInfo info = infos[i];
                 Utf8JsonExternalTypeAssetInfo assetInfo = CreateAssetInfo(info);
-                string path = $"{folderPath}/{info.Type.Name}.{Utf8JsonExternalTypeEditorUtility.ExternalTypeAssetExtensionName}";
+                string path = $"{folderPath}/{info.Type.Name}.{Utf8JsonExternalTypeEditorUtility.EXTERNAL_TYPE_ASSET_EXTENSION_NAME}";
                 string content = EditorJsonUtility.ToJson(assetInfo, true);
 
                 File.WriteAllText(path, content);
