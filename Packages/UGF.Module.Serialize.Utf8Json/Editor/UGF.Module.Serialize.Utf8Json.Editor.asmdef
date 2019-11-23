@@ -1,0 +1,19 @@
+{
+    "name": "UGF.Module.Serialize.Utf8Json.Editor",
+    "references": [
+        "GUID:5c9bda47e4474bf47959b1234eb0fc32",
+        "GUID:e30d87759e25ed64992e147287c284ad",
+        "GUID:5cc614e6fd79c5b45887c361763d47a9"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
