@@ -26,6 +26,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 - Nothing.
 
+## 0.3.0-preview - 2019-11-23
+- [Commits](https://github.com/unity-game-framework/ugf-module-serialize-utf8json/compare/0.2.0-preview...0.3.0-preview)
+- [Milestone](https://github.com/unity-game-framework/ugf-module-serialize-utf8json/milestone/3?closed=1)
+
+### Added
+- `SerializeUtf8JsonModuleBuilderAsset`: resolvers list to initialize in module.
+
+### Changed
+- Package dependencies:
+    - `com.ugf.module.serialize`: from `0.1.0-preview` to `0.2.0-preview`.
+    - `com.ugf.utf8json`: from `2.2.0-preview` to `3.0.0-preview`.
+- Change generated resolvers for math and Unity types.
+
 ## 0.2.0-preview - 2019-10-17
 - [Commits](https://github.com/unity-game-framework/ugf-module-serialize-utf8json/compare/0.1.0-preview...0.2.0-preview)
 - [Milestone](https://github.com/unity-game-framework/ugf-module-serialize-utf8json/milestone/2?closed=1)
