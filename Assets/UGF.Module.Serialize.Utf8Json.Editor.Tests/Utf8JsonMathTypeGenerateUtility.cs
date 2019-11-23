@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UGF.Code.Generate.Editor.Container.External;
 using UGF.Utf8Json.Editor.ExternalType;
+using UGF.Utf8Json.Editor.Resolver;
 using Unity.Mathematics;
 using UnityEditor;
 
@@ -10,6 +11,30 @@ namespace UGF.Module.Serialize.Utf8Json.Editor.Tests
 {
     public static class Utf8JsonMathTypeGenerateUtility
     {
+        public static void CollectFiles(string resolverPath, string folderPath)
+        {
+            if (string.IsNullOrEmpty(resolverPath)) throw new ArgumentException("Value cannot be null or empty.", nameof(resolverPath));
+            if (string.IsNullOrEmpty(folderPath)) throw new ArgumentException("Value cannot be null or empty.", nameof(folderPath));
+
+            Utf8JsonResolverAssetInfo resolver = Utf8JsonResolverAssetEditorUtility.LoadResolverInfo(resolverPath);
+            string[] paths = Directory.GetFiles(folderPath, $"*.{Utf8JsonExternalTypeEditorUtility.EXTERNAL_TYPE_ASSET_EXTENSION_NAME}", SearchOption.AllDirectories);
+
+            resolver.Sources.Clear();
+
+            for (int i = 0; i < paths.Length; i++)
+            {
+                string path = paths[i];
+                string guid = AssetDatabase.AssetPathToGUID(path);
+
+                if (!string.IsNullOrEmpty(guid))
+                {
+                    resolver.Sources.Add(guid);
+                }
+            }
+
+            Utf8JsonResolverAssetEditorUtility.SaveResolverInfo(resolverPath, resolver, false);
+        }
+
         public static void GenerateFiles(List<Utf8JsonMathTypeGenerateInfo> infos, string folderPath)
         {
             if (infos == null) throw new ArgumentNullException(nameof(infos));
@@ -21,7 +46,7 @@ namespace UGF.Module.Serialize.Utf8Json.Editor.Tests
             {
                 Utf8JsonMathTypeGenerateInfo info = infos[i];
                 Utf8JsonExternalTypeAssetInfo assetInfo = CreateAssetInfo(info);
-                string path = $"{folderPath}/{info.Type.Name}.{Utf8JsonExternalTypeEditorUtility.ExternalTypeAssetExtensionName}";
+                string path = $"{folderPath}/{info.Type.Name}.{Utf8JsonExternalTypeEditorUtility.EXTERNAL_TYPE_ASSET_EXTENSION_NAME}";
                 string content = EditorJsonUtility.ToJson(assetInfo, true);
 
                 File.WriteAllText(path, content);

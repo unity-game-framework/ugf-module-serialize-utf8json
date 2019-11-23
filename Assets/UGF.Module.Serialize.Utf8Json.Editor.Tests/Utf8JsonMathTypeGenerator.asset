@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Utf8JsonMathTypeGenerator
   m_EditorClassIdentifier: 
   m_folder: {fileID: 102900000, guid: 8f5e563cc9948cf48ac531b5c4b55849, type: 3}
+  m_resolver: {fileID: 9027929339269108002, guid: c7854200579bd5e468edfee5188fbd58,
+    type: 3}

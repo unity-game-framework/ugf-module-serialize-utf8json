@@ -2,10 +2,9 @@ using System;
 using UGF.Application.Runtime;
 using UGF.Logs.Runtime;
 using UGF.Module.Serialize.Runtime;
-using UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Resolvers;
-using UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Unity.Resolvers;
 using UGF.Utf8Json.Runtime;
 using UGF.Utf8Json.Runtime.Formatters.Union;
+using UGF.Utf8Json.Runtime.Resolver;
 
 namespace UGF.Module.Serialize.Utf8Json.Runtime
 {
@@ -25,9 +24,14 @@ namespace UGF.Module.Serialize.Utf8Json.Runtime
             SerializeModule = serializeModule ?? throw new ArgumentNullException(nameof(serializeModule));
             Description = description ?? throw new ArgumentNullException(nameof(description));
 
-            m_resolver.AddResolver(UGFModuleSerializeUtf8JsonRuntimeFormattersMathResolver.Instance);
-            m_resolver.AddResolver(UGFModuleSerializeUtf8JsonRuntimeFormattersUnityResolver.Instance);
             m_unionProvider = new SerializeUtf8JsonUnionProvider(m_resolver, m_unionSerializer);
+
+            for (int i = 0; i < Description.Resolvers.Count; i++)
+            {
+                Utf8JsonResolverAsset resolver = Description.Resolvers[i];
+
+                Resolver.AddResolver(resolver.GetResolver());
+            }
         }
 
         protected override void OnInitialize()
