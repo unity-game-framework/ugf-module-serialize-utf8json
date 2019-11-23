@@ -1,16 +1,28 @@
 // THIS IS A GENERATED CODE. DO NOT EDIT.
 // ReSharper disable all
 
-namespace UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Resolvers
+namespace Utf8Json.Runtime.Resolvers.Asset
+{
+    [global::UnityEngine.CreateAssetMenuAttribute(menuName = ("UGF/Utf8Json/Generated/Utf8Json.Runtime.Resolvers.UtfJsonMathResolver"), order = (2000))]
+    public class UtfJsonMathResolverAsset : global::UGF.Utf8Json.Runtime.Resolver.Utf8JsonResolverAsset
+    {
+        public override global::Utf8Json.IJsonFormatterResolver GetResolver()
+        {
+            return Utf8Json.Runtime.Resolvers.Resolvers.UtfJsonMathResolver.Instance;
+        }
+    }
+}
+
+namespace Utf8Json.Runtime.Resolvers.Resolvers
 {
     using System;
     using Utf8Json;
 
-    public class UGFModuleSerializeUtf8JsonRuntimeFormattersMathResolver : global::Utf8Json.IJsonFormatterResolver
+    public class UtfJsonMathResolver : global::Utf8Json.IJsonFormatterResolver
     {
-        public static readonly global::Utf8Json.IJsonFormatterResolver Instance = new UGFModuleSerializeUtf8JsonRuntimeFormattersMathResolver();
+        public static readonly global::Utf8Json.IJsonFormatterResolver Instance = new UtfJsonMathResolver();
 
-        UGFModuleSerializeUtf8JsonRuntimeFormattersMathResolver()
+        UtfJsonMathResolver()
         {
 
         }
@@ -26,7 +38,7 @@ namespace UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Resolvers
 
             static FormatterCache()
             {
-                var f = UGFModuleSerializeUtf8JsonRuntimeFormattersMathResolverGetFormatterHelper.GetFormatter(typeof(T));
+                var f = UtfJsonMathResolverGetFormatterHelper.GetFormatter(typeof(T));
                 if (f != null)
                 {
                     formatter = (global::Utf8Json.IJsonFormatter<T>)f;
@@ -35,11 +47,11 @@ namespace UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Resolvers
         }
     }
 
-    internal static class UGFModuleSerializeUtf8JsonRuntimeFormattersMathResolverGetFormatterHelper
+    internal static class UtfJsonMathResolverGetFormatterHelper
     {
         static readonly global::System.Collections.Generic.Dictionary<Type, int> lookup;
 
-        static UGFModuleSerializeUtf8JsonRuntimeFormattersMathResolverGetFormatterHelper()
+        static UtfJsonMathResolverGetFormatterHelper()
         {
             lookup = new global::System.Collections.Generic.Dictionary<Type, int>(67)
             {
@@ -120,73 +132,73 @@ namespace UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Resolvers
 
             switch (key)
             {
-                case 0: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.bool2Formatter();
-                case 1: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.bool2x2Formatter();
-                case 2: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.bool2x3Formatter();
-                case 3: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.bool2x4Formatter();
-                case 4: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.bool3Formatter();
-                case 5: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.bool3x2Formatter();
-                case 6: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.bool3x3Formatter();
-                case 7: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.bool3x4Formatter();
-                case 8: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.bool4Formatter();
-                case 9: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.bool4x2Formatter();
-                case 10: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.bool4x3Formatter();
-                case 11: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.bool4x4Formatter();
-                case 12: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.double2Formatter();
-                case 13: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.double2x2Formatter();
-                case 14: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.double2x3Formatter();
-                case 15: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.double2x4Formatter();
-                case 16: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.double3Formatter();
-                case 17: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.double3x2Formatter();
-                case 18: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.double3x3Formatter();
-                case 19: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.double3x4Formatter();
-                case 20: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.double4Formatter();
-                case 21: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.double4x2Formatter();
-                case 22: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.double4x3Formatter();
-                case 23: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.double4x4Formatter();
-                case 24: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.float2Formatter();
-                case 25: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.float2x2Formatter();
-                case 26: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.float2x3Formatter();
-                case 27: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.float2x4Formatter();
-                case 28: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.float3Formatter();
-                case 29: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.float3x2Formatter();
-                case 30: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.float3x3Formatter();
-                case 31: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.float3x4Formatter();
-                case 32: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.float4Formatter();
-                case 33: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.float4x2Formatter();
-                case 34: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.float4x3Formatter();
-                case 35: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.float4x4Formatter();
-                case 36: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.halfFormatter();
-                case 37: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.half2Formatter();
-                case 38: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.half3Formatter();
-                case 39: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.half4Formatter();
-                case 40: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.int2Formatter();
-                case 41: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.int2x2Formatter();
-                case 42: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.int2x3Formatter();
-                case 43: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.int2x4Formatter();
-                case 44: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.int3Formatter();
-                case 45: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.int3x2Formatter();
-                case 46: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.int3x3Formatter();
-                case 47: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.int3x4Formatter();
-                case 48: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.int4Formatter();
-                case 49: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.int4x2Formatter();
-                case 50: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.int4x3Formatter();
-                case 51: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.int4x4Formatter();
-                case 52: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.quaternionFormatter();
-                case 53: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.RandomFormatter();
-                case 54: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.RigidTransformFormatter();
-                case 55: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.uint2Formatter();
-                case 56: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.uint2x2Formatter();
-                case 57: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.uint2x3Formatter();
-                case 58: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.uint2x4Formatter();
-                case 59: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.uint3Formatter();
-                case 60: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.uint3x2Formatter();
-                case 61: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.uint3x3Formatter();
-                case 62: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.uint3x4Formatter();
-                case 63: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.uint4Formatter();
-                case 64: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.uint4x2Formatter();
-                case 65: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.uint4x3Formatter();
-                case 66: return new UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics.uint4x4Formatter();
+                case 0: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.bool2Formatter();
+                case 1: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.bool2x2Formatter();
+                case 2: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.bool2x3Formatter();
+                case 3: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.bool2x4Formatter();
+                case 4: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.bool3Formatter();
+                case 5: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.bool3x2Formatter();
+                case 6: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.bool3x3Formatter();
+                case 7: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.bool3x4Formatter();
+                case 8: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.bool4Formatter();
+                case 9: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.bool4x2Formatter();
+                case 10: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.bool4x3Formatter();
+                case 11: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.bool4x4Formatter();
+                case 12: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.double2Formatter();
+                case 13: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.double2x2Formatter();
+                case 14: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.double2x3Formatter();
+                case 15: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.double2x4Formatter();
+                case 16: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.double3Formatter();
+                case 17: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.double3x2Formatter();
+                case 18: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.double3x3Formatter();
+                case 19: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.double3x4Formatter();
+                case 20: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.double4Formatter();
+                case 21: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.double4x2Formatter();
+                case 22: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.double4x3Formatter();
+                case 23: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.double4x4Formatter();
+                case 24: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.float2Formatter();
+                case 25: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.float2x2Formatter();
+                case 26: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.float2x3Formatter();
+                case 27: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.float2x4Formatter();
+                case 28: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.float3Formatter();
+                case 29: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.float3x2Formatter();
+                case 30: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.float3x3Formatter();
+                case 31: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.float3x4Formatter();
+                case 32: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.float4Formatter();
+                case 33: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.float4x2Formatter();
+                case 34: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.float4x3Formatter();
+                case 35: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.float4x4Formatter();
+                case 36: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.halfFormatter();
+                case 37: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.half2Formatter();
+                case 38: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.half3Formatter();
+                case 39: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.half4Formatter();
+                case 40: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.int2Formatter();
+                case 41: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.int2x2Formatter();
+                case 42: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.int2x3Formatter();
+                case 43: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.int2x4Formatter();
+                case 44: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.int3Formatter();
+                case 45: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.int3x2Formatter();
+                case 46: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.int3x3Formatter();
+                case 47: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.int3x4Formatter();
+                case 48: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.int4Formatter();
+                case 49: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.int4x2Formatter();
+                case 50: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.int4x3Formatter();
+                case 51: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.int4x4Formatter();
+                case 52: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.quaternionFormatter();
+                case 53: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.RandomFormatter();
+                case 54: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.RigidTransformFormatter();
+                case 55: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.uint2Formatter();
+                case 56: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.uint2x2Formatter();
+                case 57: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.uint2x3Formatter();
+                case 58: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.uint2x4Formatter();
+                case 59: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.uint3Formatter();
+                case 60: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.uint3x2Formatter();
+                case 61: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.uint3x3Formatter();
+                case 62: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.uint3x4Formatter();
+                case 63: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.uint4Formatter();
+                case 64: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.uint4x2Formatter();
+                case 65: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.uint4x3Formatter();
+                case 66: return new Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics.uint4x4Formatter();
                 default: return null;
             }
         }
@@ -205,7 +217,7 @@ namespace UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Resolvers
 #pragma warning disable 219
 #pragma warning disable 168
 
-namespace UGF.Module.Serialize.Utf8Json.Runtime.Formatters.Math.Formatters.Unity.Mathematics
+namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
 {
     using System;
     using Utf8Json;
