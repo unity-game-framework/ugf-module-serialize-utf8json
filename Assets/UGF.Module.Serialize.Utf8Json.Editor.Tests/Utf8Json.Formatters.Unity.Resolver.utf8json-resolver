@@ -1,7 +1,8 @@
 {
-    "m_resolverName": "Utf8JsonUnityResovler",
+    "m_autoGenerate": true,
+    "m_resolverName": "Utf8JsonUnityResolver",
     "m_namespaceRoot": "Utf8Json.Runtime.Resolvers",
-    "m_destinationSource": "bc54d0b0c1530474e8135dd6135add70",
+    "m_destinationSource": "60878e713a4b21040b47163d6f5b2874",
     "m_resolverAsset": true,
     "m_ignoreReadOnly": true,
     "m_attributeRequired": true,
