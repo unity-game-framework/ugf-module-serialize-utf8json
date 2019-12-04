@@ -3,12 +3,12 @@
 
 namespace Utf8Json.Runtime.Resolvers.Asset
 {
-    [global::UnityEngine.CreateAssetMenuAttribute(menuName = ("UGF/Utf8Json/Generated/Utf8Json.Runtime.Resolvers.UtfJsonUnityResovler"), order = (2000))]
-    public class UtfJsonUnityResovlerAsset : global::UGF.Utf8Json.Runtime.Resolver.Utf8JsonResolverAsset
+    [global::UnityEngine.CreateAssetMenuAttribute(menuName = ("UGF/Utf8Json/Generated/Utf8Json.Runtime.Resolvers.Utf8JsonUnityResolver"), order = (2000))]
+    public class Utf8JsonUnityResolverAsset : global::UGF.Utf8Json.Runtime.Resolver.Utf8JsonResolverAsset
     {
         public override global::Utf8Json.IJsonFormatterResolver GetResolver()
         {
-            return Utf8Json.Runtime.Resolvers.Resolvers.UtfJsonUnityResovler.Instance;
+            return Utf8Json.Runtime.Resolvers.Resolvers.Utf8JsonUnityResolver.Instance;
         }
     }
 }
@@ -18,11 +18,11 @@ namespace Utf8Json.Runtime.Resolvers.Resolvers
     using System;
     using Utf8Json;
 
-    public class UtfJsonUnityResovler : global::Utf8Json.IJsonFormatterResolver
+    public class Utf8JsonUnityResolver : global::Utf8Json.IJsonFormatterResolver
     {
-        public static readonly global::Utf8Json.IJsonFormatterResolver Instance = new UtfJsonUnityResovler();
+        public static readonly global::Utf8Json.IJsonFormatterResolver Instance = new Utf8JsonUnityResolver();
 
-        UtfJsonUnityResovler()
+        Utf8JsonUnityResolver()
         {
 
         }
@@ -38,7 +38,7 @@ namespace Utf8Json.Runtime.Resolvers.Resolvers
 
             static FormatterCache()
             {
-                var f = UtfJsonUnityResovlerGetFormatterHelper.GetFormatter(typeof(T));
+                var f = Utf8JsonUnityResolverGetFormatterHelper.GetFormatter(typeof(T));
                 if (f != null)
                 {
                     formatter = (global::Utf8Json.IJsonFormatter<T>)f;
@@ -47,11 +47,11 @@ namespace Utf8Json.Runtime.Resolvers.Resolvers
         }
     }
 
-    internal static class UtfJsonUnityResovlerGetFormatterHelper
+    internal static class Utf8JsonUnityResolverGetFormatterHelper
     {
         static readonly global::System.Collections.Generic.Dictionary<Type, int> lookup;
 
-        static UtfJsonUnityResovlerGetFormatterHelper()
+        static Utf8JsonUnityResolverGetFormatterHelper()
         {
             lookup = new global::System.Collections.Generic.Dictionary<Type, int>(19)
             {
