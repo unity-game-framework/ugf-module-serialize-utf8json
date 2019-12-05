@@ -12,7 +12,8 @@ namespace UGF.Module.Serialize.Utf8Json.Editor
         private SerializedProperty m_propertyBytesSerializerName;
         private SerializedProperty m_propertyTextCompactSerializerName;
         private SerializedProperty m_propertyTextReadableSerializerName;
-        private ReorderableList m_list;
+        private ReorderableList m_resolvers;
+        private ReorderableList m_registers;
 
         protected override void OnEnable()
         {
@@ -23,12 +24,19 @@ namespace UGF.Module.Serialize.Utf8Json.Editor
             m_propertyTextReadableSerializerName = serializedObject.FindProperty("m_textReadableSerializerName");
 
             SerializedProperty propertyResolvers = serializedObject.FindProperty("m_resolverAssets");
+            SerializedProperty propertyRegisters = serializedObject.FindProperty("m_typeRegisterAssets");
 
-            m_list = new ReorderableList(serializedObject, propertyResolvers);
-            m_list.drawHeaderCallback = OnDrawHeader;
-            m_list.drawElementCallback = OnDrawElement;
-            m_list.elementHeightCallback = OnElementHeight;
-            m_list.onAddCallback = OnAdd;
+            m_resolvers = new ReorderableList(serializedObject, propertyResolvers);
+            m_resolvers.drawHeaderCallback = OnDrawHeaderResolvers;
+            m_resolvers.drawElementCallback = OnDrawElementResolvers;
+            m_resolvers.elementHeightCallback = OnElementHeight;
+            m_resolvers.onAddCallback = OnAdd;
+
+            m_registers = new ReorderableList(serializedObject, propertyRegisters);
+            m_registers.drawHeaderCallback = OnDrawHeaderRegisters;
+            m_registers.drawElementCallback = OnDrawElementRegisters;
+            m_registers.elementHeightCallback = OnElementHeight;
+            m_registers.onAddCallback = OnAdd;
         }
 
         protected override void DrawDescription()
@@ -39,22 +47,40 @@ namespace UGF.Module.Serialize.Utf8Json.Editor
 
             EditorGUILayout.Space();
 
-            m_list.DoLayoutList();
+            m_resolvers.DoLayoutList();
+            m_registers.DoLayoutList();
         }
 
         protected override void DrawInspector()
         {
         }
 
-        private void OnDrawHeader(Rect rect)
+        private void OnDrawHeaderResolvers(Rect rect)
         {
-            GUI.Label(rect, $"Resolvers (Size: {m_list.count})", EditorStyles.boldLabel);
+            GUI.Label(rect, $"Resolvers (Size: {m_resolvers.count.ToString()})", EditorStyles.boldLabel);
         }
 
-        private void OnDrawElement(Rect rect, int index, bool isActive, bool isFocused)
+        private void OnDrawHeaderRegisters(Rect rect)
         {
-            SerializedProperty propertyElement = m_list.serializedProperty.GetArrayElementAtIndex(index);
+            GUI.Label(rect, $"Type Registers (Size: {m_registers.count.ToString()})", EditorStyles.boldLabel);
+        }
 
+        private void OnDrawElementResolvers(Rect rect, int index, bool isActive, bool isFocused)
+        {
+            SerializedProperty propertyElement = m_resolvers.serializedProperty.GetArrayElementAtIndex(index);
+
+            DrawElement(rect, propertyElement);
+        }
+
+        private void OnDrawElementRegisters(Rect rect, int index, bool isActive, bool isFocused)
+        {
+            SerializedProperty propertyElement = m_registers.serializedProperty.GetArrayElementAtIndex(index);
+
+            DrawElement(rect, propertyElement);
+        }
+
+        private void DrawElement(Rect rect, SerializedProperty propertyElement)
+        {
             rect.y += EditorGUIUtility.standardVerticalSpacing;
             rect.height = EditorGUIUtility.singleLineHeight;
 

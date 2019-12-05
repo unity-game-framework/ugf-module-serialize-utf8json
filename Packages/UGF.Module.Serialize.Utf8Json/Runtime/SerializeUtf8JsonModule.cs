@@ -2,6 +2,7 @@ using System;
 using UGF.Application.Runtime;
 using UGF.Logs.Runtime;
 using UGF.Module.Serialize.Runtime;
+using UGF.Module.Serialize.Utf8Json.Runtime.TypeRegisters;
 using UGF.Utf8Json.Runtime;
 using UGF.Utf8Json.Runtime.Formatters.Union;
 using Utf8Json;
@@ -52,12 +53,28 @@ namespace UGF.Module.Serialize.Utf8Json.Runtime
                 Resolver.AddResolver(resolver);
             }
 
-            Log.Debug($"SerializeUtf8JsonModule: serializers: '{bytesName}', '{compactName}', '{readableName}', resolvers:'{Description.Resolvers.Count.ToString()}'.");
+            for (int i = 0; i < Description.TypeRegisters.Count; i++)
+            {
+                ISerializeUtf8JsonTypeRegister typeRegister = Description.TypeRegisters[i];
+
+                typeRegister.Register(m_resolver, m_unionProvider);
+            }
+
+            Log.Debug($"SerializeUtf8JsonModule: serializers: '{bytesName}', '{compactName}', '{readableName}'.");
+            Log.Debug($"SerializeUtf8JsonModule: resolvers:'{Description.Resolvers.Count.ToString()}'.");
+            Log.Debug($"SerializeUtf8JsonModule: typeRegisters:'{Description.TypeRegisters.Count.ToString()}'.");
         }
 
         protected override void OnUninitialize()
         {
             base.OnUninitialize();
+
+            for (int i = 0; i < Description.TypeRegisters.Count; i++)
+            {
+                ISerializeUtf8JsonTypeRegister typeRegister = Description.TypeRegisters[i];
+
+                typeRegister.UnRegister(m_resolver, m_unionProvider);
+            }
 
             for (int i = 0; i < Description.Resolvers.Count; i++)
             {
