@@ -4,7 +4,7 @@ using UGF.Logs.Runtime;
 using UGF.Module.Serialize.Runtime;
 using UGF.Utf8Json.Runtime;
 using UGF.Utf8Json.Runtime.Formatters.Union;
-using UGF.Utf8Json.Runtime.Resolver;
+using Utf8Json;
 
 namespace UGF.Module.Serialize.Utf8Json.Runtime
 {
@@ -18,6 +18,9 @@ namespace UGF.Module.Serialize.Utf8Json.Runtime
         private readonly Utf8JsonFormatterResolver m_resolver = Utf8JsonUtility.CreateDefaultResolver();
         private readonly UnionSerializer m_unionSerializer = new UnionSerializer();
         private readonly SerializeUtf8JsonUnionProvider m_unionProvider;
+        private readonly SerializerUtf8JsonBytes m_serializerBytes;
+        private readonly SerializerUtf8Json m_serializerTextCompact;
+        private readonly SerializerUtf8Json m_serializerTextReadable;
 
         public SerializeUtf8JsonModule(ISerializeModule serializeModule, ISerializeUtf8JsonModuleDescription description)
         {
@@ -25,13 +28,9 @@ namespace UGF.Module.Serialize.Utf8Json.Runtime
             Description = description ?? throw new ArgumentNullException(nameof(description));
 
             m_unionProvider = new SerializeUtf8JsonUnionProvider(m_resolver, m_unionSerializer);
-
-            for (int i = 0; i < Description.Resolvers.Count; i++)
-            {
-                Utf8JsonResolverAsset resolver = Description.Resolvers[i];
-
-                Resolver.AddResolver(resolver.GetResolver());
-            }
+            m_serializerBytes = new SerializerUtf8JsonBytes(m_resolver, m_unionProvider);
+            m_serializerTextCompact = new SerializerUtf8Json(m_resolver, m_unionProvider, false);
+            m_serializerTextReadable = new SerializerUtf8Json(m_resolver, m_unionProvider, true);
         }
 
         protected override void OnInitialize()
@@ -42,20 +41,30 @@ namespace UGF.Module.Serialize.Utf8Json.Runtime
             string compactName = Description.TextCompactSerializerName;
             string readableName = Description.TextReadableSerializerName;
 
-            var bytes = new SerializerUtf8JsonBytes(m_resolver, m_unionProvider);
-            var compact = new SerializerUtf8Json(m_resolver, m_unionProvider, false);
-            var readable = new SerializerUtf8Json(m_resolver, m_unionProvider, true);
+            SerializeModule.Provider.Add(bytesName, m_serializerBytes);
+            SerializeModule.Provider.Add(compactName, m_serializerTextCompact);
+            SerializeModule.Provider.Add(readableName, m_serializerTextReadable);
 
-            SerializeModule.Provider.Add(bytesName, bytes);
-            SerializeModule.Provider.Add(compactName, compact);
-            SerializeModule.Provider.Add(readableName, readable);
+            for (int i = 0; i < Description.Resolvers.Count; i++)
+            {
+                IJsonFormatterResolver resolver = Description.Resolvers[i];
 
-            Log.Debug($"SerializeUtf8JsonModule: register '3' serializers: '{bytesName}', '{readable}', '{compact}'.");
+                Resolver.AddResolver(resolver);
+            }
+
+            Log.Debug($"SerializeUtf8JsonModule: serializers: '{bytesName}', '{compactName}', '{readableName}', resolvers:'{Description.Resolvers.Count.ToString()}'.");
         }
 
         protected override void OnUninitialize()
         {
             base.OnUninitialize();
+
+            for (int i = 0; i < Description.Resolvers.Count; i++)
+            {
+                IJsonFormatterResolver resolver = Description.Resolvers[i];
+
+                Resolver.RemoveResolver(resolver);
+            }
 
             SerializeModule.Provider.Remove<byte[]>(Description.BytesSerializerName);
             SerializeModule.Provider.Remove<string>(Description.TextCompactSerializerName);

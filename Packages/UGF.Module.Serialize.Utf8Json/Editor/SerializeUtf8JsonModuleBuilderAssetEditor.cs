@@ -18,11 +18,11 @@ namespace UGF.Module.Serialize.Utf8Json.Editor
         {
             base.OnEnable();
 
-            m_propertyBytesSerializerName = serializedObject.FindProperty("m_description.m_bytesSerializerName");
-            m_propertyTextCompactSerializerName = serializedObject.FindProperty("m_description.m_textCompactSerializerName");
-            m_propertyTextReadableSerializerName = serializedObject.FindProperty("m_description.m_textReadableSerializerName");
+            m_propertyBytesSerializerName = serializedObject.FindProperty("m_bytesSerializerName");
+            m_propertyTextCompactSerializerName = serializedObject.FindProperty("m_textCompactSerializerName");
+            m_propertyTextReadableSerializerName = serializedObject.FindProperty("m_textReadableSerializerName");
 
-            SerializedProperty propertyResolvers = serializedObject.FindProperty("m_description.m_resolvers");
+            SerializedProperty propertyResolvers = serializedObject.FindProperty("m_resolverAssets");
 
             m_list = new ReorderableList(serializedObject, propertyResolvers);
             m_list.drawHeaderCallback = OnDrawHeader;
@@ -40,6 +40,10 @@ namespace UGF.Module.Serialize.Utf8Json.Editor
             EditorGUILayout.Space();
 
             m_list.DoLayoutList();
+        }
+
+        protected override void DrawInspector()
+        {
         }
 
         private void OnDrawHeader(Rect rect)
