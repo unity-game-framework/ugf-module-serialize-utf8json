@@ -26,6 +26,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 - Nothing.
 
+## 0.4.0-preview - 2019-12-07
+- [Commits](https://github.com/unity-game-framework/ugf-module-serialize-utf8json/compare/0.3.1-preview...0.4.0-preview)
+- [Milestone](https://github.com/unity-game-framework/ugf-module-serialize-utf8json/milestone/5?closed=1)
+
+### Added
+- `ISerializeUtf8JsonTypeRegister` to register union types in serialize module.
+- `SerializeUtf8JsonModuleDescription.TypeRegisters` to specify types used in serialization.
+
+### Changed
+- `SerializeUtf8JsonModuleDescription` to store `IJsonFormatterResolver` directly.
+- `SerializeUtf8JsonModuleBuilderAsset` to work with reworked `SerializeUtf8JsonModuleDescription`.
+
 ## 0.3.1-preview - 2019-12-04
 - [Commits](https://github.com/unity-game-framework/ugf-module-serialize-utf8json/compare/0.3.0-preview...0.3.1-preview)
 - [Milestone](https://github.com/unity-game-framework/ugf-module-serialize-utf8json/milestone/4?closed=1)
