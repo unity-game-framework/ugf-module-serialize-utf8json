@@ -4,7 +4,7 @@ UGF.Module.Serialize.Utf8Json
 
 ## Info
 
-- **Version**: `0.3.1-preview`
+- **Version**: `0.4.0-preview`
 - **Unity Version**: `2019.3.0`
 - **Api Compatibility Level**: `.NET Standard 2.0`
 

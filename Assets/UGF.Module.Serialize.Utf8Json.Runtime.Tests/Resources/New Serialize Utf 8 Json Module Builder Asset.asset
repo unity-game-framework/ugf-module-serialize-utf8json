@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2ab1a7b63849cd4f8308189e0c3c786, type: 3}
   m_Name: New Serialize Utf 8 Json Module Builder Asset
   m_EditorClassIdentifier: 
-  m_description:
-    m_bytesSerializerName: utf8json-bytes
-    m_textCompactSerializerName: utf8json-text-compact
-    m_textReadableSerializerName: utf8json-text-readable
-    m_resolvers:
-    - {fileID: 11400000, guid: 422ee01df6e34964d831f9782337e722, type: 2}
+  m_bytesSerializerName: utf8json-bytes
+  m_textCompactSerializerName: utf8json-text-compact
+  m_textReadableSerializerName: utf8json-text-readable
+  m_resolverAssets: []
+  m_typeRegisterAssets: []
