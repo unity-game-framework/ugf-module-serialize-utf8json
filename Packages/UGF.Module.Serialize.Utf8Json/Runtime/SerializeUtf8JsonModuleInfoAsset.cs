@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UGF.Application.Runtime;
-using UGF.Module.Runtime;
 using UGF.Module.Serialize.Runtime;
 using UGF.Module.Serialize.Utf8Json.Runtime.TypeRegisters;
 using UGF.Utf8Json.Runtime.Resolver;
@@ -9,8 +8,8 @@ using Utf8Json;
 
 namespace UGF.Module.Serialize.Utf8Json.Runtime
 {
-    [CreateAssetMenu(menuName = "UGF/Module.Serialize/SerializeUtf8JsonModuleBuilder", order = 2000)]
-    public class SerializeUtf8JsonModuleBuilderAsset : ModuleBuilderAsset<ISerializeUtf8JsonModule>
+    [CreateAssetMenu(menuName = "UGF/Module.Serialize/SerializeUtf8JsonModuleInfo", order = 2000)]
+    public class SerializeUtf8JsonModuleInfoAsset : ApplicationModuleInfoAsset<ISerializeUtf8JsonModule>
     {
         [SerializeField] private string m_bytesSerializerName = SerializerUtf8JsonUtility.SerializerBytesName;
         [SerializeField] private string m_textCompactSerializerName = SerializerUtf8JsonUtility.SerializerTextCompactName;
@@ -24,15 +23,7 @@ namespace UGF.Module.Serialize.Utf8Json.Runtime
         public List<Utf8JsonResolverAsset> ResolverAssets { get { return m_resolverAssets; } }
         public List<SerializeUtf8JsonTypeRegisterAsset> TypeRegisterAssets { get { return m_typeRegisterAssets; } }
 
-        protected override IApplicationModule OnBuild(IApplication application, IModuleBuildArguments<object> arguments)
-        {
-            var serializeModule = application.GetModule<ISerializeModule>();
-            SerializeUtf8JsonModuleDescription description = GetDescription();
-
-            return new SerializeUtf8JsonModule(serializeModule, description);
-        }
-
-        private SerializeUtf8JsonModuleDescription GetDescription()
+        public ISerializeUtf8JsonModuleDescription GetDescription()
         {
             var description = new SerializeUtf8JsonModuleDescription
             {
@@ -58,6 +49,14 @@ namespace UGF.Module.Serialize.Utf8Json.Runtime
             }
 
             return description;
+        }
+
+        protected override IApplicationModule OnBuild(IApplication application)
+        {
+            var serializeModule = application.GetModule<ISerializeModule>();
+            ISerializeUtf8JsonModuleDescription description = GetDescription();
+
+            return new SerializeUtf8JsonModule(serializeModule, description);
         }
     }
 }
