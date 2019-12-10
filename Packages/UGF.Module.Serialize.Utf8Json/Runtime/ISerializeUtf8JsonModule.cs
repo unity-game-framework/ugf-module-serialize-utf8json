@@ -7,6 +7,5 @@ namespace UGF.Module.Serialize.Utf8Json.Runtime
     {
         ISerializeUtf8JsonModuleDescription Description { get; }
         IUtf8JsonFormatterResolver Resolver { get; }
-        ISerializeUtf8JsonUnionProvider UnionProvider { get; }
     }
 }
