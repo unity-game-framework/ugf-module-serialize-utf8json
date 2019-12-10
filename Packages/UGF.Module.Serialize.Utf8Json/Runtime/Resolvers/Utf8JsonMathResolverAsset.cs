@@ -22,9 +22,22 @@ namespace Utf8Json.Runtime.Resolvers.Resolvers
     {
         public static readonly global::Utf8Json.IJsonFormatterResolver Instance = new Utf8JsonMathResolver();
 
+        private readonly System.Collections.Generic.Dictionary<global::System.Type, global::Utf8Json.IJsonFormatter> m_formatters = new System.Collections.Generic.Dictionary<global::System.Type, global::Utf8Json.IJsonFormatter>();
+
         Utf8JsonMathResolver()
         {
 
+        }
+        public global::Utf8Json.IJsonFormatter GetFormatter(global::System.Type type)
+        {
+            if (!m_formatters.TryGetValue(type, out var formatter))
+            {
+                formatter = (global::Utf8Json.IJsonFormatter)Utf8JsonMathResolverGetFormatterHelper.GetFormatter(type);
+
+                m_formatters.Add(type, formatter);
+            }
+
+            return formatter;
         }
 
         public global::Utf8Json.IJsonFormatter<T> GetFormatter<T>()
@@ -223,7 +236,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     using Utf8Json;
 
 
-    public sealed class bool2Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.bool2>
+    public sealed class bool2Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.bool2>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -244,7 +257,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.bool2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.bool2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -256,7 +269,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.bool2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.bool2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -309,7 +322,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class bool2x2Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.bool2x2>
+    public sealed class bool2x2Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.bool2x2>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -330,7 +343,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.bool2x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.bool2x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -342,7 +355,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.bool2x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.bool2x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -395,7 +408,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class bool2x3Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.bool2x3>
+    public sealed class bool2x3Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.bool2x3>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -418,7 +431,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.bool2x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.bool2x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -432,7 +445,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.bool2x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.bool2x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -492,7 +505,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class bool2x4Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.bool2x4>
+    public sealed class bool2x4Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.bool2x4>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -517,7 +530,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.bool2x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.bool2x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -533,7 +546,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.bool2x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.bool2x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -600,7 +613,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class bool3Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.bool3>
+    public sealed class bool3Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.bool3>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -623,7 +636,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.bool3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.bool3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -637,7 +650,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.bool3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.bool3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -697,7 +710,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class bool3x2Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.bool3x2>
+    public sealed class bool3x2Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.bool3x2>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -718,7 +731,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.bool3x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.bool3x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -730,7 +743,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.bool3x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.bool3x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -783,7 +796,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class bool3x3Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.bool3x3>
+    public sealed class bool3x3Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.bool3x3>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -806,7 +819,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.bool3x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.bool3x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -820,7 +833,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.bool3x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.bool3x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -880,7 +893,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class bool3x4Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.bool3x4>
+    public sealed class bool3x4Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.bool3x4>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -905,7 +918,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.bool3x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.bool3x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -921,7 +934,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.bool3x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.bool3x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -988,7 +1001,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class bool4Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.bool4>
+    public sealed class bool4Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.bool4>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -1013,7 +1026,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.bool4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.bool4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -1029,7 +1042,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.bool4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.bool4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -1096,7 +1109,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class bool4x2Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.bool4x2>
+    public sealed class bool4x2Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.bool4x2>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -1117,7 +1130,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.bool4x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.bool4x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -1129,7 +1142,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.bool4x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.bool4x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -1182,7 +1195,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class bool4x3Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.bool4x3>
+    public sealed class bool4x3Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.bool4x3>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -1205,7 +1218,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.bool4x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.bool4x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -1219,7 +1232,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.bool4x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.bool4x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -1279,7 +1292,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class bool4x4Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.bool4x4>
+    public sealed class bool4x4Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.bool4x4>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -1304,7 +1317,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.bool4x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.bool4x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -1320,7 +1333,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.bool4x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.bool4x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -1387,7 +1400,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class double2Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.double2>
+    public sealed class double2Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.double2>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -1408,7 +1421,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.double2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.double2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -1420,7 +1433,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.double2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.double2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -1473,7 +1486,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class double2x2Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.double2x2>
+    public sealed class double2x2Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.double2x2>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -1494,7 +1507,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.double2x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.double2x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -1506,7 +1519,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.double2x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.double2x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -1559,7 +1572,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class double2x3Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.double2x3>
+    public sealed class double2x3Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.double2x3>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -1582,7 +1595,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.double2x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.double2x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -1596,7 +1609,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.double2x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.double2x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -1656,7 +1669,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class double2x4Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.double2x4>
+    public sealed class double2x4Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.double2x4>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -1681,7 +1694,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.double2x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.double2x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -1697,7 +1710,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.double2x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.double2x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -1764,7 +1777,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class double3Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.double3>
+    public sealed class double3Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.double3>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -1787,7 +1800,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.double3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.double3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -1801,7 +1814,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.double3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.double3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -1861,7 +1874,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class double3x2Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.double3x2>
+    public sealed class double3x2Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.double3x2>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -1882,7 +1895,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.double3x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.double3x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -1894,7 +1907,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.double3x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.double3x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -1947,7 +1960,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class double3x3Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.double3x3>
+    public sealed class double3x3Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.double3x3>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -1970,7 +1983,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.double3x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.double3x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -1984,7 +1997,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.double3x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.double3x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -2044,7 +2057,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class double3x4Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.double3x4>
+    public sealed class double3x4Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.double3x4>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -2069,7 +2082,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.double3x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.double3x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -2085,7 +2098,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.double3x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.double3x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -2152,7 +2165,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class double4Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.double4>
+    public sealed class double4Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.double4>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -2177,7 +2190,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.double4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.double4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -2193,7 +2206,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.double4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.double4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -2260,7 +2273,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class double4x2Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.double4x2>
+    public sealed class double4x2Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.double4x2>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -2281,7 +2294,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.double4x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.double4x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -2293,7 +2306,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.double4x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.double4x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -2346,7 +2359,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class double4x3Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.double4x3>
+    public sealed class double4x3Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.double4x3>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -2369,7 +2382,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.double4x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.double4x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -2383,7 +2396,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.double4x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.double4x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -2443,7 +2456,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class double4x4Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.double4x4>
+    public sealed class double4x4Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.double4x4>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -2468,7 +2481,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.double4x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.double4x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -2484,7 +2497,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.double4x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.double4x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -2551,7 +2564,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class float2Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.float2>
+    public sealed class float2Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.float2>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -2572,7 +2585,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.float2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.float2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -2584,7 +2597,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.float2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.float2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -2637,7 +2650,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class float2x2Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.float2x2>
+    public sealed class float2x2Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.float2x2>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -2658,7 +2671,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.float2x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.float2x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -2670,7 +2683,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.float2x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.float2x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -2723,7 +2736,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class float2x3Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.float2x3>
+    public sealed class float2x3Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.float2x3>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -2746,7 +2759,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.float2x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.float2x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -2760,7 +2773,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.float2x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.float2x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -2820,7 +2833,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class float2x4Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.float2x4>
+    public sealed class float2x4Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.float2x4>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -2845,7 +2858,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.float2x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.float2x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -2861,7 +2874,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.float2x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.float2x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -2928,7 +2941,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class float3Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.float3>
+    public sealed class float3Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.float3>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -2951,7 +2964,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.float3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.float3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -2965,7 +2978,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.float3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.float3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -3025,7 +3038,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class float3x2Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.float3x2>
+    public sealed class float3x2Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.float3x2>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -3046,7 +3059,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.float3x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.float3x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -3058,7 +3071,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.float3x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.float3x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -3111,7 +3124,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class float3x3Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.float3x3>
+    public sealed class float3x3Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.float3x3>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -3134,7 +3147,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.float3x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.float3x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -3148,7 +3161,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.float3x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.float3x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -3208,7 +3221,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class float3x4Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.float3x4>
+    public sealed class float3x4Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.float3x4>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -3233,7 +3246,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.float3x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.float3x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -3249,7 +3262,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.float3x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.float3x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -3316,7 +3329,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class float4Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.float4>
+    public sealed class float4Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.float4>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -3341,7 +3354,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.float4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.float4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -3357,7 +3370,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.float4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.float4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -3424,7 +3437,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class float4x2Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.float4x2>
+    public sealed class float4x2Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.float4x2>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -3445,7 +3458,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.float4x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.float4x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -3457,7 +3470,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.float4x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.float4x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -3510,7 +3523,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class float4x3Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.float4x3>
+    public sealed class float4x3Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.float4x3>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -3533,7 +3546,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.float4x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.float4x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -3547,7 +3560,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.float4x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.float4x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -3607,7 +3620,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class float4x4Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.float4x4>
+    public sealed class float4x4Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.float4x4>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -3632,7 +3645,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.float4x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.float4x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -3648,7 +3661,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.float4x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.float4x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -3715,7 +3728,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class halfFormatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.half>
+    public sealed class halfFormatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.half>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -3734,7 +3747,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.half value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.half value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -3744,7 +3757,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.half Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.half Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -3790,7 +3803,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class half2Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.half2>
+    public sealed class half2Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.half2>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -3811,7 +3824,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.half2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.half2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -3823,7 +3836,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.half2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.half2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -3876,7 +3889,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class half3Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.half3>
+    public sealed class half3Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.half3>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -3899,7 +3912,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.half3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.half3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -3913,7 +3926,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.half3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.half3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -3973,7 +3986,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class half4Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.half4>
+    public sealed class half4Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.half4>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -3998,7 +4011,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.half4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.half4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -4014,7 +4027,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.half4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.half4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -4081,7 +4094,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class int2Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.int2>
+    public sealed class int2Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.int2>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -4102,7 +4115,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.int2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.int2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -4114,7 +4127,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.int2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.int2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -4167,7 +4180,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class int2x2Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.int2x2>
+    public sealed class int2x2Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.int2x2>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -4188,7 +4201,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.int2x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.int2x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -4200,7 +4213,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.int2x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.int2x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -4253,7 +4266,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class int2x3Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.int2x3>
+    public sealed class int2x3Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.int2x3>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -4276,7 +4289,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.int2x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.int2x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -4290,7 +4303,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.int2x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.int2x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -4350,7 +4363,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class int2x4Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.int2x4>
+    public sealed class int2x4Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.int2x4>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -4375,7 +4388,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.int2x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.int2x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -4391,7 +4404,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.int2x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.int2x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -4458,7 +4471,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class int3Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.int3>
+    public sealed class int3Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.int3>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -4481,7 +4494,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.int3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.int3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -4495,7 +4508,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.int3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.int3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -4555,7 +4568,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class int3x2Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.int3x2>
+    public sealed class int3x2Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.int3x2>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -4576,7 +4589,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.int3x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.int3x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -4588,7 +4601,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.int3x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.int3x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -4641,7 +4654,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class int3x3Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.int3x3>
+    public sealed class int3x3Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.int3x3>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -4664,7 +4677,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.int3x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.int3x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -4678,7 +4691,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.int3x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.int3x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -4738,7 +4751,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class int3x4Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.int3x4>
+    public sealed class int3x4Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.int3x4>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -4763,7 +4776,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.int3x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.int3x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -4779,7 +4792,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.int3x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.int3x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -4846,7 +4859,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class int4Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.int4>
+    public sealed class int4Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.int4>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -4871,7 +4884,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.int4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.int4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -4887,7 +4900,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.int4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.int4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -4954,7 +4967,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class int4x2Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.int4x2>
+    public sealed class int4x2Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.int4x2>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -4975,7 +4988,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.int4x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.int4x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -4987,7 +5000,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.int4x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.int4x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -5040,7 +5053,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class int4x3Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.int4x3>
+    public sealed class int4x3Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.int4x3>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -5063,7 +5076,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.int4x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.int4x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -5077,7 +5090,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.int4x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.int4x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -5137,7 +5150,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class int4x4Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.int4x4>
+    public sealed class int4x4Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.int4x4>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -5162,7 +5175,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.int4x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.int4x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -5178,7 +5191,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.int4x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.int4x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -5245,7 +5258,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class quaternionFormatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.quaternion>
+    public sealed class quaternionFormatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.quaternion>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -5264,7 +5277,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.quaternion value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.quaternion value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -5274,7 +5287,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.quaternion Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.quaternion Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -5320,7 +5333,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class RandomFormatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.Random>
+    public sealed class RandomFormatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.Random>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -5339,7 +5352,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.Random value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.Random value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -5349,7 +5362,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.Random Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.Random Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -5395,7 +5408,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class RigidTransformFormatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.RigidTransform>
+    public sealed class RigidTransformFormatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.RigidTransform>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -5416,7 +5429,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.RigidTransform value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.RigidTransform value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -5428,7 +5441,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.RigidTransform Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.RigidTransform Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -5481,7 +5494,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class uint2Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.uint2>
+    public sealed class uint2Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.uint2>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -5502,7 +5515,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.uint2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.uint2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -5514,7 +5527,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.uint2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.uint2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -5567,7 +5580,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class uint2x2Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.uint2x2>
+    public sealed class uint2x2Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.uint2x2>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -5588,7 +5601,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.uint2x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.uint2x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -5600,7 +5613,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.uint2x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.uint2x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -5653,7 +5666,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class uint2x3Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.uint2x3>
+    public sealed class uint2x3Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.uint2x3>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -5676,7 +5689,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.uint2x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.uint2x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -5690,7 +5703,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.uint2x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.uint2x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -5750,7 +5763,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class uint2x4Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.uint2x4>
+    public sealed class uint2x4Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.uint2x4>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -5775,7 +5788,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.uint2x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.uint2x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -5791,7 +5804,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.uint2x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.uint2x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -5858,7 +5871,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class uint3Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.uint3>
+    public sealed class uint3Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.uint3>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -5881,7 +5894,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.uint3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.uint3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -5895,7 +5908,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.uint3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.uint3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -5955,7 +5968,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class uint3x2Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.uint3x2>
+    public sealed class uint3x2Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.uint3x2>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -5976,7 +5989,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.uint3x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.uint3x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -5988,7 +6001,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.uint3x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.uint3x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -6041,7 +6054,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class uint3x3Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.uint3x3>
+    public sealed class uint3x3Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.uint3x3>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -6064,7 +6077,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.uint3x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.uint3x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -6078,7 +6091,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.uint3x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.uint3x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -6138,7 +6151,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class uint3x4Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.uint3x4>
+    public sealed class uint3x4Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.uint3x4>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -6163,7 +6176,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.uint3x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.uint3x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -6179,7 +6192,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.uint3x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.uint3x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -6246,7 +6259,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class uint4Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.uint4>
+    public sealed class uint4Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.uint4>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -6271,7 +6284,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.uint4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.uint4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -6287,7 +6300,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.uint4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.uint4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -6354,7 +6367,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class uint4x2Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.uint4x2>
+    public sealed class uint4x2Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.uint4x2>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -6375,7 +6388,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.uint4x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.uint4x2 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -6387,7 +6400,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.uint4x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.uint4x2 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -6440,7 +6453,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class uint4x3Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.uint4x3>
+    public sealed class uint4x3Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.uint4x3>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -6463,7 +6476,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.uint4x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.uint4x3 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -6477,7 +6490,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.uint4x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.uint4x3 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {
@@ -6537,7 +6550,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
     }
 
 
-    public sealed class uint4x4Formatter : global::Utf8Json.IJsonFormatter<global::Unity.Mathematics.uint4x4>
+    public sealed class uint4x4Formatter : global::Utf8Json.JsonFormatterBase<global::Unity.Mathematics.uint4x4>
     {
         readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
         readonly byte[][] ____stringByteKeys;
@@ -6562,7 +6575,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             };
         }
 
-        public void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.uint4x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::Unity.Mathematics.uint4x4 value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             
 
@@ -6578,7 +6591,7 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.Unity.Mathematics
             writer.WriteEndObject();
         }
 
-        public global::Unity.Mathematics.uint4x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        public override global::Unity.Mathematics.uint4x4 Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
         {
             if (reader.ReadIsNull())
             {

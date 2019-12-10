@@ -1,4 +1,4 @@
-﻿using UGF.Module.Editor;
+﻿using UGF.Application.Editor;
 using UGF.Module.Serialize.Utf8Json.Runtime;
 using UnityEditor;
 using UnityEditorInternal;
@@ -6,19 +6,19 @@ using UnityEngine;
 
 namespace UGF.Module.Serialize.Utf8Json.Editor
 {
-    [CustomEditor(typeof(SerializeUtf8JsonModuleBuilderAsset), true)]
-    internal class SerializeUtf8JsonModuleBuilderAssetEditor : ModuleBuilderAssetEditor
+    [CustomEditor(typeof(SerializeUtf8JsonModuleInfoAsset), true)]
+    internal class SerializeUtf8JsonModuleBuilderAssetEditor : ApplicationModuleInfoAssetEditor
     {
+        private SerializedProperty m_propertyScript;
         private SerializedProperty m_propertyBytesSerializerName;
         private SerializedProperty m_propertyTextCompactSerializerName;
         private SerializedProperty m_propertyTextReadableSerializerName;
         private ReorderableList m_resolvers;
         private ReorderableList m_registers;
 
-        protected override void OnEnable()
+        private void OnEnable()
         {
-            base.OnEnable();
-
+            m_propertyScript = serializedObject.FindProperty("m_Script");
             m_propertyBytesSerializerName = serializedObject.FindProperty("m_bytesSerializerName");
             m_propertyTextCompactSerializerName = serializedObject.FindProperty("m_textCompactSerializerName");
             m_propertyTextReadableSerializerName = serializedObject.FindProperty("m_textReadableSerializerName");
@@ -39,8 +39,15 @@ namespace UGF.Module.Serialize.Utf8Json.Editor
             m_registers.onAddCallback = OnAdd;
         }
 
-        protected override void DrawDescription()
+        public override void OnInspectorGUI()
         {
+            serializedObject.UpdateIfRequiredOrScript();
+
+            using (new EditorGUI.DisabledScope(true))
+            {
+                EditorGUILayout.PropertyField(m_propertyScript);
+            }
+
             EditorGUILayout.PropertyField(m_propertyBytesSerializerName);
             EditorGUILayout.PropertyField(m_propertyTextCompactSerializerName);
             EditorGUILayout.PropertyField(m_propertyTextReadableSerializerName);
@@ -49,10 +56,10 @@ namespace UGF.Module.Serialize.Utf8Json.Editor
 
             m_resolvers.DoLayoutList();
             m_registers.DoLayoutList();
-        }
 
-        protected override void DrawInspector()
-        {
+            serializedObject.ApplyModifiedProperties();
+
+            DrawModuleInfo();
         }
 
         private void OnDrawHeaderResolvers(Rect rect)
