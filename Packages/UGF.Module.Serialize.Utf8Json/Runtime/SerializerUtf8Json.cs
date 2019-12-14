@@ -24,8 +24,9 @@ namespace UGF.Module.Serialize.Utf8Json.Runtime
 
             formatter.Serialize(ref writer, target, Resolver);
 
-            byte[] bytes = writer.ToUtf8ByteArray();
-            string text = Readable ? JsonSerializer.PrettyPrint(bytes) : writer.ToString();
+            string text = Readable
+                ? JsonSerializer.PrettyPrint(writer.ToUtf8ByteArray())
+                : writer.ToString();
 
             return text;
         }
@@ -51,8 +52,9 @@ namespace UGF.Module.Serialize.Utf8Json.Runtime
 
             formatter.Serialize(ref writer, target, Resolver);
 
-            byte[] bytes = writer.ToUtf8ByteArray();
-            string text = Readable ? JsonSerializer.PrettyPrint(bytes) : writer.ToString();
+            string text = Readable
+                ? JsonSerializer.PrettyPrint(writer.ToUtf8ByteArray())
+                : writer.ToString();
 
             return text;
         }
