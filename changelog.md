@@ -26,6 +26,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 - Nothing.
 
+## 0.6.0-preview - 2019-12-15
+- [Commits](https://github.com/unity-game-framework/ugf-module-serialize-utf8json/compare/0.5.1-preview...0.6.0-preview)
+- [Milestone](https://github.com/unity-game-framework/ugf-module-serialize-utf8json/milestone/8?closed=1)
+
+### Added
+- `SerializeUtf8JsonEditorUtility` with `ToJson` and `FromJson` methods to use serialization in editor.
+- `SerializeUtf8JsonEditorSettings` to specify module infos used for serialization in editor.
+
+### Removed
+- Serialize methods from `SerializerUtf8JsonUtility`.
+
 ## 0.5.1-preview - 2019-12-14
 - [Commits](https://github.com/unity-game-framework/ugf-module-serialize-utf8json/compare/0.5.0-preview...0.5.1-preview)
 - [Milestone](https://github.com/unity-game-framework/ugf-module-serialize-utf8json/milestone/7?closed=1)

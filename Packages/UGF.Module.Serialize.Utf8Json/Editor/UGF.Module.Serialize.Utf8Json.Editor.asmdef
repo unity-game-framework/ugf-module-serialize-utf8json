@@ -2,7 +2,14 @@
     "name": "UGF.Module.Serialize.Utf8Json.Editor",
     "references": [
         "GUID:5c9bda47e4474bf47959b1234eb0fc32",
-        "GUID:0a8cfea8c226a8041bc7a5979811d462"
+        "GUID:a4312e46e9f64bb4aa011ac96ffd2a61",
+        "GUID:0a8cfea8c226a8041bc7a5979811d462",
+        "GUID:d067af32d09350a4bb33960432735e4d",
+        "GUID:ff62901452104d14cae29322ac133c05",
+        "GUID:4806a292f99efd44aba38aea20847e17",
+        "GUID:e76e47a0b9e0396439161248a194baa5",
+        "GUID:1b64e8c1b5d6a0544b302c8a8d107ca9",
+        "GUID:6ca210c6fc8b79d4292f3cdb1061c73e"
     ],
     "includePlatforms": [
         "Editor"

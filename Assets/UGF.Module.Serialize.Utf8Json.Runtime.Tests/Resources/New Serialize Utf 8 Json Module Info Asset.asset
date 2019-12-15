@@ -15,5 +15,7 @@ MonoBehaviour:
   m_bytesSerializerName: utf8json-bytes
   m_textCompactSerializerName: utf8json-text-compact
   m_textReadableSerializerName: utf8json-text-readable
-  m_resolverAssets: []
+  m_resolverAssets:
+  - {fileID: 11400000, guid: c1716db3281b2ba41943fd1bf5274055, type: 2}
+  - {fileID: 11400000, guid: 81011311b6b17604fbbb7af187678ac0, type: 2}
   m_typeRegisterAssets: []
