@@ -7,7 +7,7 @@ using UnityEngine;
 namespace UGF.Module.Serialize.Utf8Json.Editor
 {
     [CustomEditor(typeof(SerializeUtf8JsonModuleInfoAsset), true)]
-    internal class SerializeUtf8JsonModuleBuilderAssetEditor : ApplicationModuleInfoAssetEditor
+    internal class SerializeUtf8JsonModuleInfoAssetEditor : ApplicationModuleInfoAssetEditor
     {
         private SerializedProperty m_propertyScript;
         private SerializedProperty m_propertyBytesSerializerName;
