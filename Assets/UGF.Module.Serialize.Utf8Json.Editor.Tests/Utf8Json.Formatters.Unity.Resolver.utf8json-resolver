@@ -2,24 +2,86 @@
     "m_autoGenerate": true,
     "m_resolverName": "Utf8JsonUnityResolver",
     "m_namespaceRoot": "Utf8Json.Runtime.Resolvers",
-    "m_destinationSource": "60878e713a4b21040b47163d6f5b2874",
+    "m_destinationSource": {
+        "fileID": 11500000,
+        "guid": "60878e713a4b21040b47163d6f5b2874",
+        "type": 3
+    },
     "m_resolverAsset": true,
     "m_ignoreReadOnly": true,
+    "m_ignoreEmpty": false,
     "m_attributeRequired": true,
     "m_attributeTypeName": "System.SerializableAttribute, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
     "m_sources": [
-        "81368158edfba2747b5e39106b971c52",
-        "81044ca817e886242bba7878c9913c37",
-        "fa62a754d4af66f4cade7261cea70fc7",
-        "501df13bbfdb4854b9b8143f4f86e219",
-        "000ed8c910d7e444b9c66906451fd705",
-        "c5808361fa8c6294eb5c68d3e9857022",
-        "299d8e0cc89a1ae4ea6deeae0d158164",
-        "65730c51ed677af4d88b1188e12e1725",
-        "15d5492966cfecb41837c7068488bcd7",
-        "f2c3ffae7d73c4340a9cf17ab0732167",
-        "eecfaac1bc885034fbd90e21d4f20e57",
-        "03850cb86859c6243b27c3d0034d289c",
-        "fa17067c7961c844487f67869e85b065"
+        {
+            "fileID": 9027929339269108002,
+            "guid": "81368158edfba2747b5e39106b971c52",
+            "type": 3
+        },
+        {
+            "fileID": 9027929339269108002,
+            "guid": "81044ca817e886242bba7878c9913c37",
+            "type": 3
+        },
+        {
+            "fileID": 9027929339269108002,
+            "guid": "fa62a754d4af66f4cade7261cea70fc7",
+            "type": 3
+        },
+        {
+            "fileID": 9027929339269108002,
+            "guid": "501df13bbfdb4854b9b8143f4f86e219",
+            "type": 3
+        },
+        {
+            "fileID": 9027929339269108002,
+            "guid": "000ed8c910d7e444b9c66906451fd705",
+            "type": 3
+        },
+        {
+            "fileID": 9027929339269108002,
+            "guid": "c5808361fa8c6294eb5c68d3e9857022",
+            "type": 3
+        },
+        {
+            "fileID": 9027929339269108002,
+            "guid": "299d8e0cc89a1ae4ea6deeae0d158164",
+            "type": 3
+        },
+        {
+            "fileID": 9027929339269108002,
+            "guid": "65730c51ed677af4d88b1188e12e1725",
+            "type": 3
+        },
+        {
+            "fileID": 9027929339269108002,
+            "guid": "15d5492966cfecb41837c7068488bcd7",
+            "type": 3
+        },
+        {
+            "fileID": 9027929339269108002,
+            "guid": "f2c3ffae7d73c4340a9cf17ab0732167",
+            "type": 3
+        },
+        {
+            "fileID": 9027929339269108002,
+            "guid": "eecfaac1bc885034fbd90e21d4f20e57",
+            "type": 3
+        },
+        {
+            "fileID": 9027929339269108002,
+            "guid": "004df02a0402d1a48bdc34c6df21ef7d",
+            "type": 3
+        },
+        {
+            "fileID": 9027929339269108002,
+            "guid": "03850cb86859c6243b27c3d0034d289c",
+            "type": 3
+        },
+        {
+            "fileID": 9027929339269108002,
+            "guid": "fa17067c7961c844487f67869e85b065",
+            "type": 3
+        }
     ]
 }
