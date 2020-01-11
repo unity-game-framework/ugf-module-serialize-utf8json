@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UGF.Application.Runtime;
 using UGF.Module.Serialize.Runtime;
 using UGF.Module.Serialize.Utf8Json.Runtime.TypeRegisters;
+using UGF.Utf8Json.Runtime;
 using UGF.Utf8Json.Runtime.Resolver;
 using UnityEngine;
 using Utf8Json;
@@ -55,8 +56,9 @@ namespace UGF.Module.Serialize.Utf8Json.Runtime
         {
             var serializeModule = application.GetModule<ISerializeModule>();
             ISerializeUtf8JsonModuleDescription description = GetDescription();
+            var resolver = new Utf8JsonFormatterResolver();
 
-            return new SerializeUtf8JsonModule(serializeModule, description);
+            return new SerializeUtf8JsonModule(serializeModule, description, resolver);
         }
     }
 }

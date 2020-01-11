@@ -66,7 +66,7 @@ namespace Utf8Json.Runtime.Resolvers.Resolvers
 
         static Utf8JsonUnityResolverGetFormatterHelper()
         {
-            lookup = new global::System.Collections.Generic.Dictionary<Type, int>(19)
+            lookup = new global::System.Collections.Generic.Dictionary<Type, int>(20)
             {
                 {typeof(global::UnityEngine.Keyframe[]), 0 },
                 {typeof(global::UnityEngine.GradientColorKey[]), 1 },
@@ -86,7 +86,8 @@ namespace Utf8Json.Runtime.Resolvers.Resolvers
                 {typeof(global::UnityEngine.Matrix4x4), 15 },
                 {typeof(global::UnityEngine.RangeInt), 16 },
                 {typeof(global::UnityEngine.RectInt), 17 },
-                {typeof(global::UnityEngine.Vector2Int), 18 },
+                {typeof(global::UnityEngine.RectOffset), 18 },
+                {typeof(global::UnityEngine.Vector2Int), 19 },
             };
         }
 
@@ -115,7 +116,8 @@ namespace Utf8Json.Runtime.Resolvers.Resolvers
                 case 15: return new Utf8Json.Runtime.Resolvers.Formatters.UnityEngine.Matrix4x4Formatter();
                 case 16: return new Utf8Json.Runtime.Resolvers.Formatters.UnityEngine.RangeIntFormatter();
                 case 17: return new Utf8Json.Runtime.Resolvers.Formatters.UnityEngine.RectIntFormatter();
-                case 18: return new Utf8Json.Runtime.Resolvers.Formatters.UnityEngine.Vector2IntFormatter();
+                case 18: return new Utf8Json.Runtime.Resolvers.Formatters.UnityEngine.RectOffsetFormatter();
+                case 19: return new Utf8Json.Runtime.Resolvers.Formatters.UnityEngine.Vector2IntFormatter();
                 default: return null;
             }
         }
@@ -1518,6 +1520,119 @@ namespace Utf8Json.Runtime.Resolvers.Formatters.UnityEngine
             if(__y__b__) ____result.y = __y__;
             if(__width__b__) ____result.width = __width__;
             if(__height__b__) ____result.height = __height__;
+
+            return ____result;
+        }
+    }
+
+
+    public sealed class RectOffsetFormatter : global::Utf8Json.JsonFormatterBase<global::UnityEngine.RectOffset>
+    {
+        readonly global::Utf8Json.Internal.AutomataDictionary ____keyMapping;
+        readonly byte[][] ____stringByteKeys;
+
+        public RectOffsetFormatter()
+        {
+            this.____keyMapping = new global::Utf8Json.Internal.AutomataDictionary()
+            {
+                { global::Utf8Json.JsonWriter.GetEncodedPropertyNameWithoutQuotation("left"), 0},
+                { global::Utf8Json.JsonWriter.GetEncodedPropertyNameWithoutQuotation("right"), 1},
+                { global::Utf8Json.JsonWriter.GetEncodedPropertyNameWithoutQuotation("top"), 2},
+                { global::Utf8Json.JsonWriter.GetEncodedPropertyNameWithoutQuotation("bottom"), 3},
+            };
+
+            this.____stringByteKeys = new byte[][]
+            {
+                global::Utf8Json.JsonWriter.GetEncodedPropertyNameWithBeginObject("left"),
+                global::Utf8Json.JsonWriter.GetEncodedPropertyNameWithPrefixValueSeparator("right"),
+                global::Utf8Json.JsonWriter.GetEncodedPropertyNameWithPrefixValueSeparator("top"),
+                global::Utf8Json.JsonWriter.GetEncodedPropertyNameWithPrefixValueSeparator("bottom"),
+                
+            };
+        }
+
+        public override void Serialize(ref global::Utf8Json.JsonWriter writer, global::UnityEngine.RectOffset value, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        {
+            if (value == null)
+            {
+                writer.WriteNull();
+                return;
+            }
+            
+
+            writer.WriteRaw(this.____stringByteKeys[0]);
+            writer.WriteInt32(value.left);
+            writer.WriteRaw(this.____stringByteKeys[1]);
+            writer.WriteInt32(value.right);
+            writer.WriteRaw(this.____stringByteKeys[2]);
+            writer.WriteInt32(value.top);
+            writer.WriteRaw(this.____stringByteKeys[3]);
+            writer.WriteInt32(value.bottom);
+            
+            writer.WriteEndObject();
+        }
+
+        public override global::UnityEngine.RectOffset Deserialize(ref global::Utf8Json.JsonReader reader, global::Utf8Json.IJsonFormatterResolver formatterResolver)
+        {
+            if (reader.ReadIsNull())
+            {
+                return null;
+            }
+            
+
+            var __left__ = default(int);
+            var __left__b__ = false;
+            var __right__ = default(int);
+            var __right__b__ = false;
+            var __top__ = default(int);
+            var __top__b__ = false;
+            var __bottom__ = default(int);
+            var __bottom__b__ = false;
+
+            var ____count = 0;
+            reader.ReadIsBeginObjectWithVerify();
+            while (!reader.ReadIsEndObjectWithSkipValueSeparator(ref ____count))
+            {
+                var stringKey = reader.ReadPropertyNameSegmentRaw();
+                int key;
+                if (!____keyMapping.TryGetValue(stringKey, out key))
+                {
+                    reader.ReadNextBlock();
+                    goto NEXT_LOOP;
+                }
+
+                switch (key)
+                {
+                    case 0:
+                        __left__ = reader.ReadInt32();
+                        __left__b__ = true;
+                        break;
+                    case 1:
+                        __right__ = reader.ReadInt32();
+                        __right__b__ = true;
+                        break;
+                    case 2:
+                        __top__ = reader.ReadInt32();
+                        __top__b__ = true;
+                        break;
+                    case 3:
+                        __bottom__ = reader.ReadInt32();
+                        __bottom__b__ = true;
+                        break;
+                    default:
+                        reader.ReadNextBlock();
+                        break;
+                }
+
+                NEXT_LOOP:
+                continue;
+            }
+
+            var ____result = new global::UnityEngine.RectOffset();
+            if(__left__b__) ____result.left = __left__;
+            if(__right__b__) ____result.right = __right__;
+            if(__top__b__) ____result.top = __top__;
+            if(__bottom__b__) ____result.bottom = __bottom__;
 
             return ____result;
         }
