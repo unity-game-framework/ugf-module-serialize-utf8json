@@ -4,7 +4,6 @@ using UGF.Logs.Runtime;
 using UGF.Module.Serialize.Runtime;
 using UGF.Module.Serialize.Utf8Json.Runtime.TypeRegisters;
 using UGF.Utf8Json.Runtime;
-using UGF.Utf8Json.Runtime.Formatters.Typed;
 using Utf8Json;
 
 namespace UGF.Module.Serialize.Utf8Json.Runtime
@@ -13,23 +12,21 @@ namespace UGF.Module.Serialize.Utf8Json.Runtime
     {
         public ISerializeModule SerializeModule { get; }
         public ISerializeUtf8JsonModuleDescription Description { get; }
-        public IUtf8JsonFormatterResolver Resolver { get { return m_resolver; } }
-        public ITypedFormatterTypeProvider TypedFormatterTypeProvider { get { return m_typedFormatterTypeProvider; } }
+        public IUtf8JsonFormatterResolver Resolver { get; }
 
-        private readonly Utf8JsonFormatterResolver m_resolver = Utf8JsonUtility.CreateDefaultResolver();
-        private readonly TypedFormatterTypeProvider m_typedFormatterTypeProvider = new TypedFormatterTypeProvider();
         private readonly SerializerUtf8JsonBytes m_serializerBytes;
         private readonly SerializerUtf8Json m_serializerTextCompact;
         private readonly SerializerUtf8Json m_serializerTextReadable;
 
-        public SerializeUtf8JsonModule(ISerializeModule serializeModule, ISerializeUtf8JsonModuleDescription description)
+        public SerializeUtf8JsonModule(ISerializeModule serializeModule, ISerializeUtf8JsonModuleDescription description, IUtf8JsonFormatterResolver resolver)
         {
             SerializeModule = serializeModule ?? throw new ArgumentNullException(nameof(serializeModule));
             Description = description ?? throw new ArgumentNullException(nameof(description));
+            Resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
 
-            m_serializerBytes = new SerializerUtf8JsonBytes(m_resolver);
-            m_serializerTextCompact = new SerializerUtf8Json(m_resolver, false);
-            m_serializerTextReadable = new SerializerUtf8Json(m_resolver, true);
+            m_serializerBytes = new SerializerUtf8JsonBytes(Resolver);
+            m_serializerTextCompact = new SerializerUtf8Json(Resolver, false);
+            m_serializerTextReadable = new SerializerUtf8Json(Resolver, true);
         }
 
         protected override void OnInitialize()
@@ -55,7 +52,7 @@ namespace UGF.Module.Serialize.Utf8Json.Runtime
             {
                 ISerializeUtf8JsonTypeRegister typeRegister = Description.TypeRegisters[i];
 
-                typeRegister.Register(m_resolver);
+                typeRegister.Register(Resolver);
             }
 
             Log.Debug($"SerializeUtf8JsonModule: serializers: '{bytesName}', '{compactName}', '{readableName}'.");
@@ -71,7 +68,7 @@ namespace UGF.Module.Serialize.Utf8Json.Runtime
             {
                 ISerializeUtf8JsonTypeRegister typeRegister = Description.TypeRegisters[i];
 
-                typeRegister.UnRegister(m_resolver);
+                typeRegister.UnRegister(Resolver);
             }
 
             for (int i = 0; i < Description.Resolvers.Count; i++)
