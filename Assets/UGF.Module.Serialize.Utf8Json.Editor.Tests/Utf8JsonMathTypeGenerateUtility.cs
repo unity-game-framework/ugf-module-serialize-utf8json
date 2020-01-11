@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using UGF.Code.Generate.Editor.Container.External;
+using UGF.AssetPipeline.Editor.Asset.Info;
+using UGF.Code.Generate.Editor.Container.Info;
 using UGF.Utf8Json.Editor.ExternalType;
 using UGF.Utf8Json.Editor.Resolver;
 using Unity.Mathematics;
 using UnityEditor;
+using UnityEngine;
 
 namespace UGF.Module.Serialize.Utf8Json.Editor.Tests
 {
@@ -16,7 +18,7 @@ namespace UGF.Module.Serialize.Utf8Json.Editor.Tests
             if (string.IsNullOrEmpty(resolverPath)) throw new ArgumentException("Value cannot be null or empty.", nameof(resolverPath));
             if (string.IsNullOrEmpty(folderPath)) throw new ArgumentException("Value cannot be null or empty.", nameof(folderPath));
 
-            Utf8JsonResolverAssetInfo resolver = Utf8JsonResolverAssetEditorUtility.LoadResolverInfo(resolverPath);
+            var resolver = AssetInfoEditorUtility.LoadInfo<Utf8JsonResolverAssetInfo>(resolverPath);
             string[] paths = Directory.GetFiles(folderPath, $"*.{Utf8JsonExternalTypeEditorUtility.EXTERNAL_TYPE_ASSET_EXTENSION_NAME}", SearchOption.AllDirectories);
 
             resolver.Sources.Clear();
@@ -24,15 +26,15 @@ namespace UGF.Module.Serialize.Utf8Json.Editor.Tests
             for (int i = 0; i < paths.Length; i++)
             {
                 string path = paths[i];
-                string guid = AssetDatabase.AssetPathToGUID(path);
+                var asset = AssetDatabase.LoadAssetAtPath<TextAsset>(path);
 
-                if (!string.IsNullOrEmpty(guid))
+                if (asset != null)
                 {
-                    resolver.Sources.Add(guid);
+                    resolver.Sources.Add(asset);
                 }
             }
 
-            Utf8JsonResolverAssetEditorUtility.SaveResolverInfo(resolverPath, resolver, false);
+            AssetInfoEditorUtility.SaveInfo(resolverPath, resolver, false);
         }
 
         public static void GenerateFiles(List<Utf8JsonMathTypeGenerateInfo> infos, string folderPath)
@@ -45,7 +47,7 @@ namespace UGF.Module.Serialize.Utf8Json.Editor.Tests
             for (int i = 0; i < infos.Count; i++)
             {
                 Utf8JsonMathTypeGenerateInfo info = infos[i];
-                Utf8JsonExternalTypeAssetInfo assetInfo = CreateAssetInfo(info);
+                CodeGenerateContainerInfo assetInfo = CreateAssetInfo(info);
                 string path = $"{folderPath}/{info.Type.Name}.{Utf8JsonExternalTypeEditorUtility.EXTERNAL_TYPE_ASSET_EXTENSION_NAME}";
                 string content = EditorJsonUtility.ToJson(assetInfo, true);
 
@@ -123,15 +125,15 @@ namespace UGF.Module.Serialize.Utf8Json.Editor.Tests
             };
         }
 
-        private static Utf8JsonExternalTypeAssetInfo CreateAssetInfo(Utf8JsonMathTypeGenerateInfo info)
+        private static CodeGenerateContainerInfo CreateAssetInfo(Utf8JsonMathTypeGenerateInfo info)
         {
             if (info == null) throw new ArgumentNullException(nameof(info));
 
-            var assetInfo = new Utf8JsonExternalTypeAssetInfo { TypeName = info.Type.AssemblyQualifiedName };
+            var assetInfo = new CodeGenerateContainerInfo { TypeName = info.Type.AssemblyQualifiedName };
 
             for (int i = 0; i < info.Count; i++)
             {
-                CodeGenerateContainerExternalMemberInfo member = CreateMember(i, info.IsVector);
+                CodeGenerateContainerInfo.MemberInfo member = CreateMember(i, info.IsVector);
 
                 assetInfo.Members.Add(member);
             }
@@ -139,12 +141,11 @@ namespace UGF.Module.Serialize.Utf8Json.Editor.Tests
             return assetInfo;
         }
 
-        private static CodeGenerateContainerExternalMemberInfo CreateMember(int index, bool isVector)
+        private static CodeGenerateContainerInfo.MemberInfo CreateMember(int index, bool isVector)
         {
-            return new CodeGenerateContainerExternalMemberInfo
+            return new CodeGenerateContainerInfo.MemberInfo()
             {
-                Name = GetName(index, isVector),
-                Active = true
+                Name = GetName(index, isVector)
             };
         }
 

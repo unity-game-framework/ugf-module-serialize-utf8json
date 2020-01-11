@@ -4,15 +4,15 @@ UGF.Module.Serialize.Utf8Json
 
 ## Info
 
-- **Version**: `0.6.0-preview`
+- **Version**: `0.7.0-preview`
 - **Unity Version**: `2019.3.0`
-- **Api Compatibility Level**: `.NET Standard 2.0`
+- **API Compatibility Level**: `.NET Standard 2.0`
 
 ### Dependencies
 
 - [UGF.Module.Serialize](https://github.com/unity-game-framework/ugf-module-serialize): `0.3.0-preview`
-- [UGF.Utf8Json](https://github.com/unity-game-framework/ugf-utf8json): `3.2.2-preview`
-- [UGF.Logs](https://github.com/unity-game-framework/ugf-logs): `1.1.0`
+- [UGF.Utf8Json](https://github.com/unity-game-framework/ugf-utf8json): `4.0.0-preview`
+- [UGF.Logs](https://github.com/unity-game-framework/ugf-logs): `2.0.0`
 - [Mathematics](https://bintray.com/unity/unity/com.unity.mathematics): `1.1.0`
 
 ### Changelog

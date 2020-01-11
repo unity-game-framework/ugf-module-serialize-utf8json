@@ -4,6 +4,7 @@ using UGF.Module.Serialize.Runtime;
 using UGF.Module.Serialize.Utf8Json.Editor.Settings;
 using UGF.Module.Serialize.Utf8Json.Runtime;
 using UGF.Serialize.Runtime;
+using UGF.Utf8Json.Runtime;
 
 namespace UGF.Module.Serialize.Utf8Json.Editor
 {
@@ -66,13 +67,14 @@ namespace UGF.Module.Serialize.Utf8Json.Editor
             return CreateModule(serializeModuleDescription, serializeUtf8JsonModuleDescription);
         }
 
-        private static ISerializeUtf8JsonModule CreateModule(ISerializeModuleDescription serializeModuleDescription, ISerializeUtf8JsonModuleDescription serializeUtf8JsonModuleDescription)
+        private static ISerializeUtf8JsonModule CreateModule(ISerializeModuleDescription serializeModuleDescription, ISerializeUtf8JsonModuleDescription utf8JsonModuleDescription)
         {
             if (serializeModuleDescription == null) throw new ArgumentNullException(nameof(serializeModuleDescription));
-            if (serializeUtf8JsonModuleDescription == null) throw new ArgumentNullException(nameof(serializeUtf8JsonModuleDescription));
+            if (utf8JsonModuleDescription == null) throw new ArgumentNullException(nameof(utf8JsonModuleDescription));
 
             var serializeModule = new SerializeModule(serializeModuleDescription);
-            var serializeUtf8JsonModule = new SerializeUtf8JsonModule(serializeModule, serializeUtf8JsonModuleDescription);
+            var resolver = new Utf8JsonFormatterResolver();
+            var serializeUtf8JsonModule = new SerializeUtf8JsonModule(serializeModule, utf8JsonModuleDescription, resolver);
 
             using (new LogEnableScope(false))
             {

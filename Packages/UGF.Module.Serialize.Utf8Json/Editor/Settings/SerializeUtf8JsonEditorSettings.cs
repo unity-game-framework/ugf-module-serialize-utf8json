@@ -14,7 +14,7 @@ namespace UGF.Module.Serialize.Utf8Json.Editor.Settings
             set
             {
                 m_settings.Data.SerializeModuleInfo = value;
-                m_settings.Save();
+                m_settings.SaveSettings();
             }
         }
 
@@ -24,15 +24,14 @@ namespace UGF.Module.Serialize.Utf8Json.Editor.Settings
             set
             {
                 m_settings.Data.SerializeUtf8JsonModuleInfo = value;
-                m_settings.Save();
+                m_settings.SaveSettings();
             }
         }
 
         private static readonly CustomSettings<SerializeUtf8JsonEditorSettingsData> m_settings = new CustomSettingsEditorPackage<SerializeUtf8JsonEditorSettingsData>
         (
             "UGF.Module.Serialize.Utf8Json",
-            "SerializeUtf8JsonEditorSettings",
-            CustomSettingsEditorUtility.DefaultPackageExternalFolder
+            "SerializeUtf8JsonEditorSettings"
         );
 
         [SettingsProvider]
