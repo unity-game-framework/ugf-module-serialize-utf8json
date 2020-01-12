@@ -18,11 +18,11 @@ namespace UGF.Module.Serialize.Utf8Json.Runtime
         private readonly SerializerUtf8Json m_serializerTextCompact;
         private readonly SerializerUtf8Json m_serializerTextReadable;
 
-        public SerializeUtf8JsonModule(ISerializeModule serializeModule, ISerializeUtf8JsonModuleDescription description, IUtf8JsonFormatterResolver resolver)
+        public SerializeUtf8JsonModule(ISerializeModule serializeModule, ISerializeUtf8JsonModuleDescription description, IUtf8JsonFormatterResolver resolver = null)
         {
             SerializeModule = serializeModule ?? throw new ArgumentNullException(nameof(serializeModule));
             Description = description ?? throw new ArgumentNullException(nameof(description));
-            Resolver = resolver ?? throw new ArgumentNullException(nameof(resolver));
+            Resolver = resolver ?? new Utf8JsonFormatterResolver();
 
             m_serializerBytes = new SerializerUtf8JsonBytes(Resolver);
             m_serializerTextCompact = new SerializerUtf8Json(Resolver, false);

@@ -4,7 +4,6 @@ using UGF.Module.Serialize.Runtime;
 using UGF.Module.Serialize.Utf8Json.Editor.Settings;
 using UGF.Module.Serialize.Utf8Json.Runtime;
 using UGF.Serialize.Runtime;
-using UGF.Utf8Json.Runtime;
 
 namespace UGF.Module.Serialize.Utf8Json.Editor
 {
@@ -73,8 +72,7 @@ namespace UGF.Module.Serialize.Utf8Json.Editor
             if (utf8JsonModuleDescription == null) throw new ArgumentNullException(nameof(utf8JsonModuleDescription));
 
             var serializeModule = new SerializeModule(serializeModuleDescription);
-            var resolver = new Utf8JsonFormatterResolver();
-            var serializeUtf8JsonModule = new SerializeUtf8JsonModule(serializeModule, utf8JsonModuleDescription, resolver);
+            var serializeUtf8JsonModule = new SerializeUtf8JsonModule(serializeModule, utf8JsonModuleDescription);
 
             using (new LogEnableScope(false))
             {
