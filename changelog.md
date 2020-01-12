@@ -26,7 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 - Nothing.
 
-## 0.7.1-preview - 2019-01-12
+## 0.7.1-preview - 2020-01-12
 - [Commits](https://github.com/unity-game-framework/ugf-module-serialize-utf8json/compare/0.7.0-preview...0.7.1-preview)
 - [Milestone](https://github.com/unity-game-framework/ugf-module-serialize-utf8json/milestone/10?closed=1)
 
