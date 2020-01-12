@@ -11,7 +11,7 @@
     "dependencies": {
         "com.ugf.application": "3.1.0-preview",
         "com.ugf.module.serialize": "0.3.0-preview",
-        "com.ugf.utf8json": "4.0.0-preview",
+        "com.ugf.utf8json": "4.1.0-preview",
         "com.ugf.logs": "2.0.0",
         "com.unity.mathematics": "1.1.0"
     }

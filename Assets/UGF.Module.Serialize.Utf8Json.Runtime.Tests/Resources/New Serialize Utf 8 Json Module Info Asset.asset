@@ -18,4 +18,6 @@ MonoBehaviour:
   m_resolverAssets:
   - {fileID: 11400000, guid: c1716db3281b2ba41943fd1bf5274055, type: 2}
   - {fileID: 11400000, guid: 81011311b6b17604fbbb7af187678ac0, type: 2}
+  - {fileID: 11400000, guid: 47cd467e5a1ea3b4287df33067e6ed7b, type: 2}
+  - {fileID: 11400000, guid: e570fde0350d52a4dadc62dcfa0416b9, type: 2}
   m_typeRegisterAssets: []
