@@ -56,7 +56,7 @@ namespace UGF.Module.Serialize.Utf8Json.Runtime
         {
             var serializeModule = application.GetModule<ISerializeModule>();
             ISerializeUtf8JsonModuleDescription description = GetDescription();
-            var resolver = new Utf8JsonFormatterResolver();
+            Utf8JsonFormatterResolver resolver = Utf8JsonUtility.CreateDefaultResolver();
 
             return new SerializeUtf8JsonModule(serializeModule, description, resolver);
         }
